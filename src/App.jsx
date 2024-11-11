@@ -12,11 +12,13 @@ function App() {
   function shuffle(e) {
     let someId = e.currentTarget.getAttribute('data-id');
     if (currId.includes(someId)) {
-      setScore({ ...score, max_score: (score.max_score > score.current_score) ? score.max_score : score.current_score, current_score: 0 })
+      setScore({ ...score, max_score: (score.max_score > score.current_score) ? score.max_score : score.current_score, current_score: 0 });
+      setCurrId([]);
     } else {
       setScore({ ...score, current_score: score.current_score + 1 });
+      setCurrId([...currId, someId]);
     }
-    setCurrId([...currId, someId]);
+   
     let shuffled_cards = [];
     let usedIndex = [];
     while (shuffled_cards.length < cards.length) {
